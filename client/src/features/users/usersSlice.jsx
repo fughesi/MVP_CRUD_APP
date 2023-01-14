@@ -1,17 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+const initialState = {
+  value: 0,
+  bool: true,
+};
 
-export const usersSlice = createSlice({
-  name: "users",
+export const counter = createSlice({
+  name: "counter",
   initialState,
   reducers: {
-    addNewUser: (state, action) => {
-      console.log("new user added");
+    increaseByOne: (state) => {
+      state.value += 1;
+    },
+    decreaseByOne: (state) => {
+      state.value -= 1;
+    },
+    increasebyAmount: (state, { payload }) => {
+      state.value += payload;
+    },
+    decreaseByAmount: (state, { payload }) => {
+      state.value -= payload;
+    },
+    flipBool: (state) => {
+      state.bool = !state.bool;
     },
   },
 });
 
-export const { addNewUser } = usersSlice.actions;
+export const { increaseByOne, increasebyAmount, decreaseByOne, decreaseByAmount, flipBool } = counter.actions;
 
-export default usersSlice.reducer;
+export default counter.reducer;

@@ -1,4 +1,5 @@
-import Poke from "../components/Poke";
+import Poke from "./components/Poke";
+import Form from "./components/Form";
 import "./App.css";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
         hi
         <Poke />
       </div>
+      <Form />
     </>
   );
 }
