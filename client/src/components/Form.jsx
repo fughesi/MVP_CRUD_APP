@@ -1,54 +1,47 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { addObject, newObject, pushArr } from "../features/formSlice";
 
 const Form = () => {
-  const dispatch = useDispatch();
-  const  
-
-  const [formData, setFormData] = useState({
+  const [data, setData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    favColor: "",
   });
 
-  const clearForm = () => {
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      favColor: "",
+  const dispatch = useDispatch();
+  const item = useSelector((state) => state);
+
+  const values = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
     });
   };
 
-  const updateState = (e) => {
-    const { name, value } = e.target;
-    setFormData((i) => ({ ...i, [name]: value }));
+  const clearForm = () => {
+    setData({ firstName: "", lastName: "", email: "" });
   };
 
-  const { firstName, lastName, email, favColor } = formData;
-
-  // console.log(Object.keys(formData));
-  // console.log(Object.values(formData));
-  // console.log(Object.entries(formData));
-  console.log(formData);
-
-  // dispatch(formData),
-
-  return (
-    <form onSubmit={(e) => (e.preventDefault(), dispatch({type: "addFormData",  payload: formData}), clearForm())}>
+  const { firstName, lastName, email } = data;
+  const content = (
+    <>
+      <form onSubmit={(e) => (e.preventDefault(), dispatch(addObject(data)), clearForm())}>
+        <input type="text" name="firstName" value={firstName} placeholder="FN" onChange={(e) => values(e)} />
+        <input type="text" name="lastName" value={lastName} placeholder="LN" onChange={(e) => values(e)} />
+        <input type="text" name="email" value={email} placeholder="email" onChange={(e) => values(e)} />
+        <br />
+        <button type="submit">submit</button>
+      </form>
       <br />
-      <input type="text" name="firstName" value={firstName} onChange={(e) => updateState(e)} />
+      {JSON.stringify(data)}
       <br />
-      <input type="text" name="lastName" value={lastName} onChange={(e) => updateState(e)} />
       <br />
-      <input type="text" name="email" value={email} onChange={(e) => updateState(e)} />
       <br />
-      <input type="text" name="favColor" value={favColor} onChange={(e) => updateState(e)} />
-      <br />
-      <button type="submit">submit</button>
-    </form>
+    </>
   );
+
+  return content;
 };
 
 export default Form;

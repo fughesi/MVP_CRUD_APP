@@ -1,23 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// const initialState = {};
 const initialState = {
+  arr: [],
   firstName: "",
   lastName: "",
   email: "",
-  favColor: "",
 };
 
-export const form = createSlice({
+const formSlice = createSlice({
   name: "form",
   initialState,
   reducers: {
-    addFormData: (state, { payload }) => {
-      console.log(payload);
+    addObject: (state, { payload }) => {
+      state += Object.create(...state, payload);
     },
+    newObject: (state, { payload }) => {
+      const thing = { ...state, payload };
+      return thing;
+    },
+    pushArr: (state, action) => {},
   },
 });
 
-export const { addFormData } = form.actions;
+export const { addObject, newObject, pushArr } = formSlice.actions;
 
-export default form.reducer;
+export default formSlice.reducer;
