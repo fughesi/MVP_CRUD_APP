@@ -15,7 +15,10 @@ const formSlice = createSlice({
       state += Object.create(...state, payload);
     },
     newObject: (state, { payload }) => {},
-    pushArr: (state, action) => {},
+    pushArr: (state, { payload }) => {
+      state.arr.push(payload);
+      // state.arr.concat(payload);
+    },
   },
 });
 

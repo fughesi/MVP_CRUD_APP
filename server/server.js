@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const products = require("./products");
+const dotenv = require("dotenv").config();
 const app = express();
 
 app.use(express.json());
@@ -14,6 +15,6 @@ app.get("/products", (req, res) => {
   res.send(products);
 });
 
-const Port = 5650;
+const Port = process.env.PORT || 5651;
 
-app.listen(Port || 5001, console.log(`Server is running on Port: ${Port}`));
+app.listen(Port, console.log(`Server is running on Port: ${Port}`));

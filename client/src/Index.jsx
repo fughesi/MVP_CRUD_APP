@@ -9,6 +9,7 @@ import { productsApi } from "./services/productsApi";
 import counterReducer from "./features/counterSlice";
 import formReducer from "./features/formSlice";
 import productReducer from "./features/productSlice";
+import cartReducer from "./features/cartSlice";
 
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
@@ -18,6 +19,7 @@ const store = configureStore({
     counter: counterReducer,
     product: productReducer,
     form: formReducer,
+    cart: cartReducer,
     [pokemonApi.reducerPath]: pokemonApi.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
   },
