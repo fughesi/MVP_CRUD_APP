@@ -4,13 +4,22 @@ const products = require("./products");
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
 const register = require("./routes/register");
+const http = require("http");
 const app = express();
+
+// console.log(http.METHODS);
 
 app.use(express.json());
 app.use(cors());
 app.use("/api/register", register);
 
 app.get("/", (req, res) => {
+  console.log(req.headers);
+  console.log(req.method);
+  console.log(req.cookies);
+  console.log(req.ip);
+  console.log(req.url);
+
   res.send("HOME PAGE");
 });
 
