@@ -9,7 +9,7 @@ import { productsApi } from "./services/productsApi";
 import counterReducer from "./features/counterSlice";
 import formReducer from "./features/formSlice";
 import productReducer from "./features/productSlice";
-import cartReducer from "./features/cartSlice";
+import cartReducer, { getTotals } from "./features/cartSlice";
 
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
@@ -27,6 +27,8 @@ const store = configureStore({
     return getDefaultMiddlewear().concat(pokemonApi.middleware, productsApi.middleware);
   },
 });
+
+store.dispatch(getTotals());
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
