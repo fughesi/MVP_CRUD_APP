@@ -4,27 +4,35 @@ const products = require("./products");
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
 const register = require("./routes/register");
-const http = require("http");
+const { getDB } = require("mongodb");
 const app = express();
 
-// console.log(http.METHODS);
+const { Products } = require("./models/products");
 
 app.use(express.json());
 app.use(cors());
 app.use("/api/register", register);
 
 app.get("/", (req, res) => {
-  console.log(req.headers);
-  console.log(req.method);
-  console.log(req.cookies);
-  console.log(req.ip);
-  console.log(req.url);
-
   res.send("HOME PAGE");
 });
 
 app.get("/products", (req, res) => {
   res.send(products);
+});
+
+app.post("/products", (req, res) => {
+  const prod = req.body;
+
+  const newProd = new Products(prod);
+
+  newProd.save((error) => {
+    if (error) {
+      res.status(500).console.log(error);
+    } else {
+      res.send("data received");
+    }
+  });
 });
 
 const Port = process.env.PORT || 5651;

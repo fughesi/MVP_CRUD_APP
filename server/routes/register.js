@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
 const express = require("express");
-const User = require("../models/user");
+const { User } = require("../models/user");
 const token = require("../utils/authToken");
 const authToken = require("../utils/authToken");
 
@@ -13,6 +13,7 @@ router.post("/", async (req, res) => {
     email: Joi.string().min(3).max(200).required().email(),
     password: Joi.string().min(6).max(200).required(),
   });
+
   const { error } = schema.validate(req.body);
 
   if (error) return res.status(400).send(error?.details[0]?.message);
