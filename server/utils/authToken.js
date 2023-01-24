@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
 const authToken = (user) => {
   const JWT = process.env.JWT;
@@ -15,4 +15,4 @@ const authToken = (user) => {
   return token;
 };
 
-module.exports = authToken;
+export default authToken;

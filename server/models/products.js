@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const productsSchema = new mongoose.Schema({
   title: { type: String, required: true, minlength: 3, maxlength: 30 },
@@ -15,4 +15,4 @@ const productsSchema = new mongoose.Schema({
 
 const Products = mongoose.model("Products", productsSchema);
 
-exports.Products = Products;
+export default Products;

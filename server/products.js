@@ -1,4 +1,4 @@
-const products = [
+export const products = [
   {
     id: 1,
     title: "iPhone 9",
@@ -89,4 +89,4 @@ const products = [
   },
 ];
 
-module.exports = products;
+// module.exports = products;

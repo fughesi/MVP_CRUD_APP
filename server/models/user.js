@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true, minlength: 3, maxlength: 30 },
@@ -6,6 +6,4 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true, minlength: 3, maxlength: 1024 },
 });
 
-const User = mongoose.model("User", userSchema);
-
-exports.User = User;
+export const User = mongoose.model("User", userSchema);
