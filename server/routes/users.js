@@ -2,7 +2,6 @@ import express from "express";
 import bcrypt from "bcrypt";
 import Joi from "joi";
 import { User } from "../models/user.js";
-// import token from "../utils/authToken.js";
 import authToken from "../utils/authToken.js";
 
 const router = express.Router();
@@ -56,7 +55,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-  const person = await User.findByIdAndDelete(req.params.id);
+  const person = await User.findByIdAndDelete(req.params.id); // Kyle says not to use this method because no validation
 
   if (person) {
     res.status(200).send(`${person?.name} deleted`);

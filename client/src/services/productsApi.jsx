@@ -7,7 +7,10 @@ export const productsApi = createApi({
     getAllProducts: builder.query({
       query: () => "products",
     }),
+    addProduct: builder.mutation({
+      mutation: () => "products",
+    }),
   }),
 });
 
-export const { useGetAllProductsQuery } = productsApi;
+export const { useGetAllProductsQuery, useAddProductMutation } = productsApi;

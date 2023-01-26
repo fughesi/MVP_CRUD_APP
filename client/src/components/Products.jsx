@@ -55,7 +55,7 @@ const Products = () => {
             <div>
               {data?.map((i) => {
                 return (
-                  <div key={i.id} className="productMap">
+                  <div key={i._id} className="productMap">
                     <h3>{i.title}</h3>
                     <p>for only ${i.price}</p>
                     <img src={i.thumbnail} alt={i.description} />
