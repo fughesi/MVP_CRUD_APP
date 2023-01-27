@@ -6,19 +6,15 @@ import Products from "../models/products.js";
 
 const router = express.Router();
 
+router.use(function (req, res, next) {
+  console.log(`${req.url} @ ${Date.now()}`);
+  next();
+});
+
 router.get("/", async (req, res) => {
   let products = await Products.find();
 
   res.send(products);
-});
-
-router.get("/pic", (req, res) => {
-  // let options = {
-  //   root: path.join(__dirname),
-  // };
-  // let products = await Products.find();
-  // res.download("./routes/monkey.png");
-  // res.sendFile("./resources/monkey.png", options);
 });
 
 router.post("/", async (req, res) => {

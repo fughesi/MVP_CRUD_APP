@@ -6,6 +6,11 @@ import authToken from "../utils/authToken.js";
 
 const router = express.Router();
 
+router.use(function (req, res, next) {
+  console.log(`${req.url} @ ${Date.now()}`);
+  next();
+});
+
 router.get("/", async (req, res) => {
   let user = await User.find();
   res.send(user);

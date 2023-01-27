@@ -13,6 +13,7 @@ import cartReducer, { getTotals } from "./features/cartSlice";
 
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
+import { usersApi } from "./services/usersApi";
 
 const store = configureStore({
   reducer: {
@@ -20,11 +21,12 @@ const store = configureStore({
     product: productReducer,
     form: formReducer,
     cart: cartReducer,
+    [usersApi.reducerPath]: usersApi.reducer,
     [pokemonApi.reducerPath]: pokemonApi.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
   },
   middleware: (getDefaultMiddlewear) => {
-    return getDefaultMiddlewear().concat(pokemonApi.middleware, productsApi.middleware);
+    return getDefaultMiddlewear().concat(pokemonApi.middleware, productsApi.middleware, usersApi.middleware);
   },
 });
 

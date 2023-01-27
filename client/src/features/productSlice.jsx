@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const productSlice = createSlice({
   name: "products",
-  initialState: ["things"],
+  initialState: [],
   reducers: {
     addProducts: (state, { payload }) => {
       state.product.unshift(payload);

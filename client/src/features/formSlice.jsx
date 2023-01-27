@@ -12,16 +12,17 @@ const formSlice = createSlice({
   initialState,
   reducers: {
     addObject: (state, { payload }) => {
-      state += Object.create(...state, payload);
+      state.firstName = payload.firstName;
+      state.lastName = payload.lastName;
+      state.email = payload.email;
     },
-    newObject: (state, { payload }) => {},
+
     pushArr: (state, { payload }) => {
       state.arr.push(payload);
-      // state.arr.concat(payload);
     },
   },
 });
 
-export const { addObject, newObject, pushArr } = formSlice.actions;
+export const { addObject, pushArr } = formSlice.actions;
 
 export default formSlice.reducer;
